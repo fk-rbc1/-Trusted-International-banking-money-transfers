@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="bn" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinTech Tracker Portal - অনলাইন ফাইল ট্র্যাকিং পোটাল</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: { 800: '#0B192C', 900: '#1E3E62' },
+                        gold: { 400: '#F1C40F', 500: '#D4AF37' }
+                    },
+                    fontFamily: { sans: ['Hind Siliguri', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: #f8fafc; }
+    </style>
+</head>
+<body class="text-slate-800 bg-slate-50 min-h-screen flex flex-col justify-between">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-navy-900 text-slate-200 text-xs sm:text-sm py-2 px-4 border-b border-amber-500/30">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center space-x-2">
+                <span class="bg-amber-500 text-navy-900 font-bold px-2 py-0.5 rounded text-xs">জরুরী বার্তা</span>
+                <span>FinTech Tracker Portals-এর অনলাইন ফাইল ভেরিফিকেশন সার্ভিস ২৪/৭ উন্মুক্ত।</span>
+            </div>
+            <div class="flex items-center space-x-4 text-xs">
+                <span><i class="fa-solid fa-shield-halved text-amber-400 mr-1"></i> সুরক্ষিত এনক্রিপ্টেড পোটাল</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-40 bg-navy-800 text-white shadow-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-3 cursor-pointer">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-amber-500 to-yellow-300 flex items-center justify-center text-navy-900 font-black text-2xl shadow-lg border-2 border-amber-400">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-lg sm:text-2xl font-extrabold text-white leading-tight">FinTech Tracker Portal</h1>
+                        <p class="text-xs text-amber-400 font-medium">স্মার্ট ফাইল ও অ্যাকাউন্ট স্ট্যাটাস ট্র্যাকার</p>
+                    </div>
+                </div>
+                <div>
+                    <a href="#searchSection" class="bg-amber-500 hover:bg-amber-600 text-navy-900 font-extrabold px-4 py-2.5 rounded-xl text-xs sm:text-sm transition shadow-lg flex items-center gap-2">
+                        <i class="fa-solid fa-magnifying-glass"></i> ফাইল স্ট্যাটাস চেক
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl w-full mx-auto p-4 sm:p-6 my-4 flex-grow space-y-12">
+
+        <!-- PUBLIC CALCULATOR SECTION -->
+        <section class="bg-gradient-to-br from-navy-900 via-navy-800 to-slate-900 rounded-3xl p-6 sm:p-10 text-white shadow-2xl border-4 border-amber-500 relative overflow-hidden">
+            <div class="max-w-3xl mx-auto text-center mb-8">
+                <span class="bg-amber-500/20 text-amber-300 border border-amber-500/40 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                    <i class="fa-solid fa-calculator mr-1"></i> ফ্রি ইন্টারেক্টিভ হিসাব ক্যালকুলেটর
+                </span>
+                <h2 class="text-2xl sm:text-4xl font-black text-white mt-3">সহজ কিস্তি ও ফান্ড সিমুলেটর</h2>
+                <p class="text-slate-300 text-xs sm:text-sm mt-2">পরিমাণ ও মেয়াদের উপর ভিত্তি করে কিস্তির আনুমানিক হিসাব বের করুন</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <!-- Inputs Side -->
+                <div class="lg:col-span-7 space-y-6 bg-slate-800/80 p-6 rounded-2xl border border-slate-700">
+                    <div>
+                        <div class="flex justify-between items-center text-sm mb-2">
+                            <label class="font-bold text-slate-200">আবেদনকৃত আনুমানিক পরিমাণ:</label>
+                            <span class="text-amber-400 font-black text-lg sm:text-xl" id="calcAmountLabel">৳ ১০,০০,০০০</span>
+                        </div>
+                        <input type="range" id="calcAmount" min="100000" max="5000000" step="50000" value="1000000" class="w-full h-2.5 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-amber-400">
+                        <div class="flex justify-between text-[11px] text-slate-400 mt-1">
+                            <span>৳ ১,০০,০০০ (সর্বনিম্ন)</span>
+                            <span>৳ ৫০,০০,০০০ (সর্বোচ্চ)</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between items-center text-sm mb-2">
+                            <label class="font-bold text-slate-200">মেয়াদ (বছর):</label>
+                            <span class="text-amber-400 font-black text-lg sm:text-xl" id="calcTenureLabel">১০ বছর</span>
+                        </div>
+                        <input type="range" id="calcTenure" min="1" max="30" step="1" value="10" class="w-full h-2.5 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-amber-400">
+                        <div class="flex justify-between text-[11px] text-slate-400 mt-1">
+                            <span>১ বছর</span>
+                            <span>৩০ বছর</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Result Card Side -->
+                <div class="lg:col-span-5 bg-gradient-to-tr from-amber-500 to-yellow-400 text-navy-900 p-6 sm:p-8 rounded-2xl shadow-xl text-center space-y-4">
+                    <span class="text-xs font-black uppercase tracking-widest text-navy-800/80">পরিশোধের প্রাক্কলিত বিকল্প</span>
+                    
+                    <div class="grid grid-cols-2 gap-2 my-2">
+                        <div class="bg-navy-900 text-white p-3 rounded-xl border border-navy-800">
+                            <span class="text-[10px] uppercase font-bold text-amber-400 block mb-1">মাসিক প্রাক্কলন</span>
+                            <span class="text-lg sm:text-xl font-black text-white" id="calcMonthlyEmi">৳ ৮,৭৫০</span>
+                        </div>
+                        <div class="bg-navy-900 text-white p-3 rounded-xl border border-navy-800">
+                            <span class="text-[10px] uppercase font-bold text-amber-400 block mb-1">বাৎসরিক প্রাক্কলন</span>
+                            <span class="text-lg sm:text-xl font-black text-white" id="calcYearlyEmi">৳ ১,০৫,০০০</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-navy-900/10 p-3 rounded-xl text-left space-y-1.5 text-xs border border-navy-900/20">
+                        <div class="flex justify-between">
+                            <span>মূল ফান্ড পরিমাণ:</span>
+                            <span class="font-bold" id="calcTotalLoan">৳ ১০,০০,০০০</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>আনুমানিক অতিরিক্ত চার্জ (৫%):</span>
+                            <span class="font-bold text-amber-900" id="calcTotalInterest">৳ ৫০,০০০</span>
+                        </div>
+                    </div>
+
+                    <a href="#searchSection" class="w-full bg-navy-900 hover:bg-navy-800 text-white font-extrabold py-3.5 px-4 rounded-xl shadow-lg transition text-xs sm:text-sm block text-center">
+                        ফাইল সার্চ করতে নিচে যান <i class="fa-solid fa-arrow-down ml-1"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEARCH FORM CARD -->
+        <section id="searchSection" class="bg-white rounded-3xl shadow-xl p-6 sm:p-10 border border-slate-200">
+            <div class="text-center max-w-xl mx-auto mb-8">
+                <div class="w-16 h-16 bg-navy-900 text-amber-400 rounded-full flex items-center justify-center text-2xl mx-auto mb-3 shadow-md">
+                    <i class="fa-solid fa-user-check"></i>
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-black text-navy-900">আপনার ফাইল যাচাই করুন</h2>
+                <p class="text-slate-500 text-xs sm:text-sm mt-1">সঠিক গ্রাহকের নাম এবং ক্লায়েন্ট অ্যাকাউন্ট নম্বর প্রদান করে সাবমিট করুন</p>
+            </div>
+
+            <form id="searchForm" class="space-y-4 max-w-2xl mx-auto">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">গ্রাহকের নাম (Customer Name) *</label>
+                        <input type="text" id="searchName" required placeholder="উদাহরণ: Md Rahim" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 outline-none text-slate-800 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">ক্লায়েন্ট অ্যাকাউন্ট আইডি *</label>
+                        <input type="text" id="searchAcc" required placeholder="উদাহরণ: 123456789" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 outline-none text-slate-800 text-sm">
+                    </div>
+                </div>
+                <button type="submit" id="searchBtn" class="w-full bg-amber-500 hover:bg-amber-600 text-navy-900 font-extrabold py-3.5 rounded-xl shadow-lg transition flex items-center justify-center gap-2 text-base">
+                    <i class="fa-solid fa-magnifying-glass"></i> তথ্য সাবমিট ও স্ট্যাটাস দেখুন
+                </button>
+            </form>
+        </section>
+
+        <!-- CUSTOMER REVIEWS (EXTENDED & PROFESSIONAL) -->
+        <section class="space-y-6">
+            <div class="flex justify-between items-end border-b border-slate-200 pb-3">
+                <div>
+                    <span class="text-xs font-bold text-amber-600 uppercase tracking-widest">ক্লায়েন্ট প্রতিক্রিয়া</span>
+                    <h3 class="text-xl sm:text-2xl font-black text-navy-900">ব্যবহারকারীদের বাস্তব অভিজ্ঞতা</h3>
+                </div>
+                <div class="flex items-center gap-1 text-amber-500 text-sm font-bold bg-amber-50 px-3 py-1 rounded-full border border-amber-200">
+                    <i class="fa-solid fa-star"></i> 4.9/5.0 রেটিং
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between hover:shadow-md transition">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <div class="flex text-amber-400 text-xs gap-0.5">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <span class="text-[10px] text-slate-400"><i class="fa-solid fa-circle-check text-emerald-500 mr-1"></i>ভেরিফাইড ইউজার</span>
+                        </div>
+                        <p class="text-xs text-slate-600 italic mb-4 leading-relaxed">"অনলাইন পোটাল থেকে সহজেই ফাইল স্ট্যাটাস ও বাকি টাকা দেওয়ার মেয়াদ দেখতে পেরেছি। সার্ভিস অত্যন্ত দ্রুত ও নির্ভরযোগ্য।"</p>
+                    </div>
+                    <div class="border-t border-slate-100 pt-3 flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-navy-900 text-amber-400 font-bold text-xs flex items-center justify-center">TA</div>
+                        <div>
+                            <span class="text-xs font-bold text-navy-900 block leading-none">তানভীর আহমেদ</span>
+                            <span class="text-[10px] text-slate-400">ঢাকা, বাংলাদেশ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between hover:shadow-md transition">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <div class="flex text-amber-400 text-xs gap-0.5">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <span class="text-[10px] text-slate-400"><i class="fa-solid fa-circle-check text-emerald-500 mr-1"></i>ভেরিফাইড ইউজার</span>
+                        </div>
+                        <p class="text-xs text-slate-600 italic mb-4 leading-relaxed">"রিয়েলটাইম আপডেট সুবিধাটা খুব দারুন! অফিসার কন্টাক্ট নম্বর পেয়ে সরাসরি কথা বলে দ্রুত কাজ সমাধান করতে পেরেছি।"</p>
+                    </div>
+                    <div class="border-t border-slate-100 pt-3 flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-navy-900 text-amber-400 font-bold text-xs flex items-center justify-center">SR</div>
+                        <div>
+                            <span class="text-xs font-bold text-navy-900 block leading-none">সামিরা রহমান</span>
+                            <span class="text-[10px] text-slate-400">চট্টগ্রাম, বাংলাদেশ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between hover:shadow-md transition">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <div class="flex text-amber-400 text-xs gap-0.5">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <span class="text-[10px] text-slate-400"><i class="fa-solid fa-circle-check text-emerald-500 mr-1"></i>ভেরিফাইড ইউজার</span>
+                        </div>
+                        <p class="text-xs text-slate-600 italic mb-4 leading-relaxed">"আবেদনকৃত অ্যামাউন্ট ও কিস্তির হিসাব একদম স্বচ্ছ। পোটালের ডিজাইন সহজ এবং সহজেই ট্র্যাকিং করা যায়।"</p>
+                    </div>
+                    <div class="border-t border-slate-100 pt-3 flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-navy-900 text-amber-400 font-bold text-xs flex items-center justify-center">RI</div>
+                        <div>
+                            <span class="text-xs font-bold text-navy-900 block leading-none">রফিকুল ইসলাম</span>
+                            <span class="text-[10px] text-slate-400">সিলেট, বাংলাদেশ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 4 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between hover:shadow-md transition">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <div class="flex text-amber-400 text-xs gap-0.5">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <span class="text-[10px] text-slate-400"><i class="fa-solid fa-circle-check text-emerald-500 mr-1"></i>ভেরিফাইড ইউজার</span>
+                        </div>
+                        <p class="text-xs text-slate-600 italic mb-4 leading-relaxed">"এডমিন নোটিশ সেকশনে দিকনির্দেশনা দেওয়া থাকায় করণীয় বুঝতে কোনো অসুবিধা হয়নি। সিস্টেমটি সত্যিই চমৎকার।"</p>
+                    </div>
+                    <div class="border-t border-slate-100 pt-3 flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-navy-900 text-amber-400 font-bold text-xs flex items-center justify-center">MK</div>
+                        <div>
+                            <span class="text-xs font-bold text-navy-900 block leading-none">মাহমুদুল হাসান খান</span>
+                            <span class="text-[10px] text-slate-400">রাজশাহী, বাংলাদেশ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 5 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between hover:shadow-md transition">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <div class="flex text-amber-400 text-xs gap-0.5">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <span class="text-[10px] text-slate-400"><i class="fa-solid fa-circle-check text-emerald-500 mr-1"></i>ভেরিফাইড ইউজার</span>
+                        </div>
+                        <p class="text-xs text-slate-600 italic mb-4 leading-relaxed">"সহজ ইউজার ইন্টারফেস এবং মোবাইল দিয়ে সার্চ করার সুবিধা সবচেয়ে বেশি ভালো লেগেছে। সিকিউর একটি পোটাল।"</p>
+                    </div>
+                    <div class="border-t border-slate-100 pt-3 flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-navy-900 text-amber-400 font-bold text-xs flex items-center justify-center">NS</div>
+                        <div>
+                            <span class="text-xs font-bold text-navy-900 block leading-none">নাসরিন সুলতানা</span>
+                            <span class="text-[10px] text-slate-400">খুলনা, বাংলাদেশ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 6 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between hover:shadow-md transition">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <div class="flex text-amber-400 text-xs gap-0.5">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <span class="text-[10px] text-slate-400"><i class="fa-solid fa-circle-check text-emerald-500 mr-1"></i>ভেরিফাইড ইউজার</span>
+                        </div>
+                        <p class="text-xs text-slate-600 italic mb-4 leading-relaxed">"অনলাইন পেমেন্ট ডিউ ডেট ও স্ট্যাটাস ট্র্যাকিং সিস্টেম বেশ কার্যকর। যেকোনো প্রশ্নের উত্তর দ্রুত পাওয়া যায়।"</p>
+                    </div>
+                    <div class="border-t border-slate-100 pt-3 flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-navy-900 text-amber-400 font-bold text-xs flex items-center justify-center">AH</div>
+                        <div>
+                            <span class="text-xs font-bold text-navy-900 block leading-none">আবুল হোসেন</span>
+                            <span class="text-[10px] text-slate-400">বরিশাল, বাংলাদেশ</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MODAL POPUP FOR STATUS DETAILS -->
+    <div id="resultModal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-xl w-full p-6 sm:p-8 relative border border-slate-200 my-8">
+            <button id="closeModalBtn" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-2xl font-bold">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-2 border-2 border-emerald-400 shadow-sm">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <h3 class="text-xl sm:text-2xl font-black text-emerald-700">ভেরিফিকেশন সাকসেসফুল!</h3>
+                <p class="text-xs text-slate-500 mt-1">আপনার ফাইল রেকর্ড সম্পর্কিত বিস্তারিত তথ্য নিচে প্রদান করা হলো</p>
+            </div>
+
+            <div class="space-y-2.5 bg-slate-50 p-4 rounded-2xl border border-slate-200 text-xs sm:text-sm mb-4">
+                <div class="flex justify-between border-b pb-2">
+                    <span class="text-slate-500 font-medium">গ্রাহকের নাম:</span>
+                    <span id="resName" class="font-bold text-slate-800"></span>
+                </div>
+                <div class="flex justify-between border-b pb-2">
+                    <span class="text-slate-500 font-medium">রেফারেন্স আইডি:</span>
+                    <span id="resPassport" class="font-bold text-slate-800"></span>
+                </div>
+                <div class="flex justify-between border-b pb-2">
+                    <span class="text-slate-500 font-medium">অ্যাপ্লিকেশন আইডি:</span>
+                    <span id="resBankName" class="font-bold text-slate-800"></span>
+                </div>
+                <div class="flex justify-between border-b pb-2">
+                    <span class="text-slate-500 font-medium">ক্লায়েন্ট অ্যাকাউন্ট আইডি:</span>
+                    <span id="resAcc" class="font-bold text-slate-800"></span>
+                </div>
+                <div class="flex justify-between border-b pb-2">
+                    <span class="text-slate-500 font-medium">আবেদনকৃত / অনুমোদিত পরিমাণ:</span>
+                    <span id="resAmount" class="font-black text-amber-600"></span>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-2 my-2 bg-amber-500/10 p-2.5 rounded-xl border border-amber-500/20">
+                    <div>
+                        <span class="text-[11px] text-slate-600 font-semibold block">মাসিক কিস্তি:</span>
+                        <span id="resMonthlyEmi" class="font-black text-navy-900 text-sm"></span>
+                    </div>
+                    <div>
+                        <span class="text-[11px] text-slate-600 font-semibold block">বাৎসরিক কিস্তি:</span>
+                        <span id="resYearlyEmi" class="font-black text-navy-900 text-sm"></span>
+                    </div>
+                </div>
+
+                <div class="flex justify-between border-b pb-2">
+                    <span class="text-slate-500 font-medium">সম্ভাব্য পাওয়ার তারিখ:</span>
+                    <span id="resDate" class="font-bold text-slate-800"></span>
+                </div>
+                <div class="flex justify-between border-b pb-2">
+                    <span class="text-slate-500 font-medium">মেয়াদ:</span>
+                    <span id="resTenure" class="font-bold text-slate-800"></span>
+                </div>
+                <div class="flex justify-between border-b pb-2">
+                    <span class="text-slate-500 font-medium">প্রতি বছর কিস্তি সংখ্যা:</span>
+                    <span id="resInstallment" class="font-bold text-slate-800"></span>
+                </div>
+                <div class="flex justify-between items-center pt-1">
+                    <span class="text-slate-500 font-medium">বর্তমান পরিস্থিতি/স্ট্যাটাস:</span>
+                    <span id="resStatus" class="font-bold px-3 py-1 rounded-full text-xs"></span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4 text-xs sm:text-sm">
+                <div class="bg-amber-50 border border-amber-300 rounded-2xl p-3.5 text-center">
+                    <span class="text-amber-800 font-bold block text-xs mb-1"><i class="fa-solid fa-hand-holding-dollar mr-1"></i> এখন তাকে কত টাকা প্রদান করতে হবে:</span>
+                    <span id="resPayableNow" class="text-lg font-black text-amber-700 block">৳ ০</span>
+                    <span id="resDueDate" class="text-[11px] font-semibold text-amber-800 block mt-1 bg-amber-200/60 rounded px-2 py-0.5">মেয়াদ: N/A</span>
+                </div>
+                <div class="bg-emerald-50 border border-emerald-300 rounded-2xl p-3.5 text-center flex flex-col justify-center items-center">
+                    <span class="text-emerald-800 font-bold block text-xs mb-1"><i class="fa-solid fa-headset mr-1"></i> অফিসার কন্টাক্ট নম্বর:</span>
+                    <span id="resAgentContact" class="text-base font-black text-emerald-800"></span>
+                    <a id="resAgentPhoneCall" href="#" class="mt-1 inline-flex items-center gap-1 bg-emerald-600 text-white text-[10px] font-bold px-3 py-1 rounded-lg hover:bg-emerald-700 transition">
+                        <i class="fa-solid fa-phone"></i> সরাসরি কল করুন
+                    </a>
+                </div>
+            </div>
+
+            <div class="bg-slate-900 text-white border border-slate-700 rounded-xl p-4 mb-6">
+                <h4 class="text-xs font-bold text-amber-400 uppercase tracking-wider mb-1 flex items-center gap-1">
+                    <i class="fa-solid fa-bell"></i> এডমিন নোটিশ / দিকনির্দেশনা:
+                </h4>
+                <p id="resNotice" class="text-sm text-slate-200 font-medium leading-relaxed"></p>
+            </div>
+
+            <button id="modalOkBtn" class="w-full bg-navy-900 hover:bg-navy-800 text-white font-bold py-3.5 rounded-xl transition text-sm shadow-md">
+                ঠিক আছে / বন্ধ করুন
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-navy-800 text-slate-400 py-6 text-center text-xs border-t border-slate-700">
+        <div class="max-w-4xl mx-auto px-4 space-y-2">
+            <p>&copy; 2026 FinTech Tracker Portal. All rights reserved.</p>
+            <p class="text-[11px] text-slate-500">Disclaimer: This website is a generic tracking management portal designed for reference and tracking simulation purposes only.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK Implementation -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBC4aeOXKQZGg6OmXYF7kwtXegjAUHo7ao",
+            authDomain: "loan--rbc.firebaseapp.com",
+            databaseURL: "https://loan--rbc-default-rtdb.firebaseio.com",
+            projectId: "loan--rbc",
+            storageBucket: "loan--rbc.firebasestorage.app",
+            messagingSenderId: "168138217104",
+            appId: "1:168138217104:web:9b479f5f611bac8d362a15",
+            measurementId: "G-LMGH86P05B"
+        };
+
+        let db;
+        try {
+            const app = initializeApp(firebaseConfig);
+            db = getDatabase(app);
+        } catch(e) {
+            console.error("Firebase init error in User Panel:", e);
+        }
+
+        function updateCalculator() {
+            const amount = parseFloat(document.getElementById('calcAmount').value);
+            const tenureYears = parseInt(document.getElementById('calcTenure').value);
+
+            document.getElementById('calcAmountLabel').innerText = "৳ " + amount.toLocaleString('bn-BD');
+            document.getElementById('calcTenureLabel').innerText = tenureYears + " বছর";
+
+            const totalInterest = amount * 0.05;
+            const totalPayable = amount + totalInterest;
+
+            const yearlyEmi = totalPayable / tenureYears;
+            const monthlyEmi = yearlyEmi / 12;
+
+            document.getElementById('calcMonthlyEmi').innerText = "৳ " + Math.round(monthlyEmi).toLocaleString('bn-BD');
+            document.getElementById('calcYearlyEmi').innerText = "৳ " + Math.round(yearlyEmi).toLocaleString('bn-BD');
+            document.getElementById('calcTotalLoan').innerText = "৳ " + amount.toLocaleString('bn-BD');
+            document.getElementById('calcTotalInterest').innerText = "৳ " + Math.round(totalInterest).toLocaleString('bn-BD');
+        }
+
+        document.getElementById('calcAmount').addEventListener('input', updateCalculator);
+        document.getElementById('calcTenure').addEventListener('input', updateCalculator);
+
+        // Search Form Submit Handler
+        document.getElementById('searchForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const inputName = document.getElementById('searchName').value.trim();
+            const inputAcc = document.getElementById('searchAcc').value.trim();
+
+            const searchBtn = document.getElementById('searchBtn');
+            searchBtn.disabled = true;
+            searchBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> তথ্য খোঁজা হচ্ছে...`;
+
+            try {
+                const dbRef = ref(db);
+                const snapshot = await get(child(dbRef, 'loans'));
+
+                if (snapshot.exists()) {
+                    const data = snapshot.val();
+                    let matchedData = null;
+
+                    Object.values(data).forEach(item => {
+                        if (item.name && item.accNo &&
+                            item.name.toLowerCase().trim() === inputName.toLowerCase() && 
+                            item.accNo.toString().trim() === inputAcc) {
+                            matchedData = item;
+                        }
+                    });
+
+                    if (matchedData) {
+                        displayDataInModal(matchedData);
+                    } else {
+                        alert('দুঃখিত! নাম এবং ক্লায়েন্ট অ্যাকাউন্ট নম্বর মেলেনি। সঠিক তথ্য দিয়ে পুনরায় চেষ্টা করুন।');
+                    }
+                } else {
+                    alert('ডাটাবেজে বর্তমানে কোনো তথ্য जमा নেই!');
+                }
+            } catch (error) {
+                console.error("Search Error:", error);
+                alert('ফায়ারবেস থেকে ডেটা লোড করতে সমস্যা হচ্ছে! কনসোল বা ফায়ারবেস কানেকশন রুলস পরীক্ষা করুন।');
+            } finally {
+                searchBtn.disabled = false;
+                searchBtn.innerHTML = `<i class="fa-solid fa-magnifying-glass"></i> তথ্য সাবমিট ও স্ট্যাটাস দেখুন`;
+            }
+        });
+
+        function displayDataInModal(data) {
+            document.getElementById('resName').innerText = data.name || 'N/A';
+            document.getElementById('resPassport').innerText = data.passport || 'N/A';
+            document.getElementById('resBankName').innerText = data.bankName || 'N/A';
+            document.getElementById('resAcc').innerText = data.accNo || 'N/A';
+            document.getElementById('resAmount').innerText = data.amount || 'N/A';
+            document.getElementById('resDate').innerText = data.date || 'প্রক্রিয়াধীন';
+            document.getElementById('resTenure').innerText = data.tenure || 'N/A';
+            document.getElementById('resInstallment').innerText = data.installments || 'N/A';
+            document.getElementById('resNotice').innerText = data.notice || 'বর্তমানে কোনো অতিরিক্ত নোটিশ নেই।';
+            document.getElementById('resPayableNow').innerText = data.payableNow || '৳ ০';
+            document.getElementById('resDueDate').innerText = 'মেয়াদ: ' + (data.dueDate || 'N/A');
+            document.getElementById('resAgentContact').innerText = data.agentContact || 'N/A';
+            
+            if(data.agentContact) {
+                document.getElementById('resAgentPhoneCall').href = "tel:" + data.agentContact.replace(/[^0-9+]/g, '');
+            }
+
+            const numAmount = parseFloat((data.amount || '').replace(/[^0-9.]/g, '')) || 1000000;
+            const numYears = parseFloat(data.tenure) || 10;
+            
+            const totalInt = numAmount * 0.05;
+            const totalPay = numAmount + totalInt;
+            const yrEmi = totalPay / numYears;
+            const moEmi = yrEmi / 12;
+
+            document.getElementById('resMonthlyEmi').innerText = "৳ " + Math.round(moEmi).toLocaleString('bn-BD');
+            document.getElementById('resYearlyEmi').innerText = "৳ " + Math.round(yrEmi).toLocaleString('bn-BD');
+
+            const statusElem = document.getElementById('resStatus');
+            const statusText = data.status || 'প্রক্রিয়াধীন';
+            statusElem.innerText = statusText;
+
+            statusElem.className = 'font-bold px-3 py-1 rounded-full text-xs ';
+            if(statusText === 'অনুমোদন হয়েছে') statusElem.className += 'bg-emerald-100 text-emerald-800 border border-emerald-300';
+            else if(statusText === 'যাচাই করণ হয়েছে') statusElem.className += 'bg-blue-100 text-blue-800 border border-blue-300';
+            else if(statusText === 'ফেল হয়েছে') statusElem.className += 'bg-red-100 text-red-800 border border-red-300';
+            else if(statusText === 'প্রস্তুতি চলতেছে') statusElem.className += 'bg-yellow-100 text-yellow-800 border border-yellow-300';
+            else statusElem.className += 'bg-purple-100 text-purple-800 border border-purple-300';
+
+            document.getElementById('resultModal').classList.remove('hidden');
+            document.getElementById('resultModal').classList.add('flex');
+        }
+
+        function closeModal() {
+            document.getElementById('resultModal').classList.add('hidden');
+            document.getElementById('resultModal').classList.remove('flex');
+        }
+
+        document.getElementById('closeModalBtn').addEventListener('click', closeModal);
+        document.getElementById('modalOkBtn').addEventListener('click', closeModal);
+
+        updateCalculator();
+    </script>
+</body>
+</html>
